@@ -2,6 +2,14 @@
   padding-top: 80px;
 
   &__main {
-    min-height: calc(100vh - 180px);
+    height: calc(100vh - 160px);
+    left: 150px;
+    width: calc(100vw - (170px));
+    padding: 10px;
+    position: fixed;
+    background-image: url('/assets/backgrounds/background-main.jpg');
+    background-size: cover;
+    opacity: 0.9;
+    color: white;
   }
 }

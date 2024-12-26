@@ -12,12 +12,7 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "baseUrl": "./src",
-    "paths": {
-      "styles/*": ["styles/*"],
-      "components/*": ["components/*"],
-      "pages/*": ["pages/*"]
-    }
+    "baseUrl": "./src"
   },
   "include": ["src"]
 }

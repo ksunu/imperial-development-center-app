@@ -1,17 +1,15 @@
 .header {
   position: fixed;
-  left: 0;
+  left: 150px;
   top: 0;
-  width: 100%;
+  width: calc(100vw - 150px);
   height: 80px;
   background-color: #eee;
 
   &__contents {
     display: flex;
-    width: 96%;
-    max-width: 1100px;
     height: 100%;
-    margin: 0 auto;
+    margin: 0 20px;
     align-items: center;
     justify-content: space-between;
 

@@ -1,40 +1,35 @@
-import { FC, useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { fetchPlanets } from 'api/endpoints'
+import { fetchStarships } from 'api/endpoints'
 import Layout from 'components/Layout/Layout'
 import { queryKeys } from 'react-query/constants'
 import { PaginatedResponse, Result } from 'types'
 import Card from 'components/Card/Card'
-import 'pages/HomePage.scss'
 
-interface HomePageProps {}
-
-const HomePage: FC<HomePageProps> = () => {
+const StarshipsPage = () => {
   const [page, setPage] = useState(1)
-
   const { data, isLoading, isError, error } = useQuery<
     PaginatedResponse,
     Error
   >({
-    queryKey: [queryKeys.planets, page],
-    queryFn: () => fetchPlanets(page),
+    queryKey: [queryKeys.starships, page],
+    queryFn: () => fetchStarships(page),
     keepPreviousData: true,
   })
-
   if (isLoading) return <div>Loading...</div>
   if (isError) return <div>Error: {error?.message}</div>
 
   return (
     <Layout>
-      <div className="home-container">
-        {data.results.map((planet: Result) => (
+      <div className="starships-container">
+        {data.results.map((starship: Result) => (
           <Card
-            key={planet.name}
-            type="planets"
-            name={planet.name}
-            uid={planet.uid}
-            url={planet.url}
+            key={starship.name}
+            type="starships"
+            name={starship.name}
+            uid={starship.uid}
+            url={starship.url}
           />
         ))}
       </div>
@@ -42,4 +37,4 @@ const HomePage: FC<HomePageProps> = () => {
   )
 }
 
-export default HomePage
+export default StarshipsPage

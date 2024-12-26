@@ -1,0 +1,46 @@
+.side-menu {
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+
+  &__logo {
+    text-align: center;
+    margin: 16px auto;
+    img {
+      width: 60%;
+    }
+  }
+
+  &__navigation-items {
+    ul {
+      list-style: none;
+      padding: 0 14px;
+      li {
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 40px;
+        display: flex;
+        align-items: center;
+        &:hover {
+          color: lightblue;
+        }
+      }
+    }
+    &--name {
+      margin-left: 8px;
+    }
+
+    &--selected {
+      border-bottom: 2px solid red;
+      color: lightcoral;
+      &:hover {
+        border-bottom: 2px solid lightcoral;
+      }
+    }
+  }
+}

@@ -6,17 +6,23 @@
     "serve": "vite preview"
   },
   "devDependencies": {
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
-    "typescript": "^5.7.2",
-    "vite": "^6.0.5"
+    "@types/react": "19.0.2",
+    "@types/react-dom": "19.0.2",
+    "@types/react-router-dom": "5.3.3",
+    "typescript": "5.7.2",
+    "vite": "6.0.5"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "^4.3.4",
-    "path": "^0.12.7",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-router-dom": "^7.1.1",
-    "sass": "^1.83.0"
+    "@fortawesome/fontawesome-free": "6.7.2",
+    "@fortawesome/fontawesome-svg-core": "6.7.2",
+    "@fortawesome/free-solid-svg-icons": "6.7.2",
+    "@fortawesome/react-fontawesome": "0.2.2",
+    "@tanstack/react-query": "4",
+    "@vitejs/plugin-react": "4.3.4",
+    "path": "0.12.7",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-router-dom": "7.1.1",
+    "sass": "1.83.0"
   }
 }
