@@ -1,32 +1,3 @@
-// .card {
-//   border: 1px solid lightgray;
-//   border-radius: 5px;
-//   width: 100%;
-//   height: 20%;
-
-//   &__image {
-//     // width: 100%;
-//     background-color: black;
-//     height: 20%;
-//     justify-content: center;
-//     text-align: center;
-
-//     object {
-//       object-fit: cover;
-//       width: 100%;
-//       height: 100%;
-//       img {
-//         object-fit: cover;
-//         width: 100%;
-//         height: 120px;
-//       }
-//     }
-//   }
-
-//   &__content {
-//   }
-// }
-
 .card {
   overflow: hidden;
   border: 1px solid darkgray;
@@ -49,6 +20,11 @@
     &--title {
       font-weight: 900;
       color: #c8417e;
+    }
+    &--description {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
     }
   }
 }

@@ -1,25 +1,22 @@
-import { FC, useCallback, useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { useAppContext } from 'context/AppContext'
-import { fetchPlanets } from 'api/endpoints'
+import { fetchVehicles } from 'api/endpoints'
 import { queryKeys } from 'react-query/constants'
 import { PaginatedResponse, Result } from 'types'
 import Layout from 'components/Layout/Layout'
 import Card from 'components/Card/Card'
-import 'pages/HomePage.scss'
+import 'pages/VehiclesPage.scss'
 
-interface HomePageProps {}
-
-const HomePage: FC<HomePageProps> = () => {
+const VehiclesPage = () => {
   const { currentPage, setResultsInfo } = useAppContext()
-
   const { data, isLoading, isError, error } = useQuery<
     PaginatedResponse,
     Error
   >({
-    queryKey: [queryKeys.planets, currentPage],
-    queryFn: () => fetchPlanets(currentPage),
+    queryKey: [queryKeys.starships, currentPage],
+    queryFn: () => fetchVehicles(currentPage),
     keepPreviousData: true,
   })
 
@@ -40,14 +37,14 @@ const HomePage: FC<HomePageProps> = () => {
 
   return (
     <Layout>
-      <div className="home-container">
-        {data.results.map((planet: Result) => (
+      <div className="vehicles-container">
+        {data.results.map((vehicle: Result) => (
           <Card
-            key={planet.name}
-            type="planets"
-            name={planet.name}
-            uid={planet.uid}
-            url={planet.url}
+            key={vehicle.name}
+            type="vehicles"
+            name={vehicle.name}
+            uid={vehicle.uid}
+            url={vehicle.url}
           />
         ))}
       </div>
@@ -55,4 +52,4 @@ const HomePage: FC<HomePageProps> = () => {
   )
 }
 
-export default HomePage
+export default VehiclesPage

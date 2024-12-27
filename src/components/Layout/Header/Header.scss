@@ -4,7 +4,6 @@
   top: 0;
   width: calc(100vw - 150px);
   height: 80px;
-  background-color: #eee;
 
   &__contents {
     display: flex;
@@ -12,6 +11,7 @@
     margin: 0 20px;
     align-items: center;
     justify-content: space-between;
+    color: white;
 
     &--navigation {
       ul {

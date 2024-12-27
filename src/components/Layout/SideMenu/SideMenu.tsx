@@ -1,4 +1,5 @@
-import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faEarthEurope,
@@ -11,35 +12,45 @@ import { useAppContext } from 'context/AppContext'
 import 'components/Layout/SideMenu/SideMenu.scss'
 import { CategoryTypes, CategoryTypesEnum } from 'types'
 
+const navItems = [
+  {
+    label: 'Planets',
+    url: '/',
+    icon: faEarthEurope,
+    name: CategoryTypesEnum.planets,
+  },
+  {
+    label: 'Starships',
+    url: '/starships',
+    icon: faPlaceOfWorship,
+    name: CategoryTypesEnum.starships,
+  },
+  {
+    label: 'People',
+    url: '/people',
+    icon: faPeopleGroup,
+    name: CategoryTypesEnum.people,
+  },
+  {
+    label: 'Vehicles',
+    url: '/vehicles',
+    icon: faTruckPickup,
+    name: CategoryTypesEnum.vehicles,
+  },
+]
+
 const SideMenu = () => {
   const navigate = useNavigate()
+  const { pathname } = useLocation()
   const { currentCategory, setCurrentCategory } = useAppContext()
-  const navItems = [
-    {
-      label: 'Planets',
-      url: '/',
-      icon: faEarthEurope,
-      name: CategoryTypesEnum.planets,
-    },
-    {
-      label: 'Starships',
-      url: '/starships',
-      icon: faPlaceOfWorship,
-      name: CategoryTypesEnum.starships,
-    },
-    {
-      label: 'People',
-      url: '/people',
-      icon: faPeopleGroup,
-      name: CategoryTypesEnum.people,
-    },
-    {
-      label: 'Vehicles',
-      url: '/vehicles',
-      icon: faTruckPickup,
-      name: CategoryTypesEnum.vehicles,
-    },
-  ]
+
+  useEffect(() => {
+    if (pathname) setCurrentCategory(pathname.replace('/', '') as CategoryTypes)
+  }, [])
+
+  useEffect(() => {
+    if (!currentCategory) setCurrentCategory(CategoryTypesEnum.planets)
+  }, [currentCategory])
 
   const handleNavigation = (url: string, name: CategoryTypes) => {
     setCurrentCategory(name)
