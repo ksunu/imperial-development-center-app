@@ -15,7 +15,6 @@ export default defineConfig({
       scss: {
         api: 'modern',
         additionalData: `@use "styles/variables" as *;`,
-        quietDeps: true,
       },
     },
   },
