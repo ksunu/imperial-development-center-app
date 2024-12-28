@@ -10,6 +10,15 @@ export default defineConfig({
     open: true,
     port: 3000,
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern',
+        additionalData: `@use "styles/variables" as *;`,
+        quietDeps: true,
+      },
+    },
+  },
   resolve: {
     alias: {
       styles: path.resolve(__dirname, './src/styles'),
@@ -20,6 +29,7 @@ export default defineConfig({
       utils: path.resolve(__dirname, './src/utils'),
       types: path.resolve(__dirname, './src/types'),
       context: path.resolve(__dirname, './src/context'),
+      mock: path.resolve(__dirname, './src/mock'),
     },
   },
 })

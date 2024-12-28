@@ -10,6 +10,131 @@
     background-image: url('/assets/backgrounds/background-main.jpg');
     background-size: cover;
     opacity: 0.9;
-    color: white;
+    color: $base-white;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout {
+    .header {
+      height: 60px;
+      &__contents {
+        font-size: 14px;
+      }
+    }
+
+    .footer {
+      height: 40px;
+      width: calc(100% - 100px);
+      &__contents {
+        &--info {
+          width: 30%;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .side-menu {
+      width: 130px;
+      &__navigation-items {
+        ul {
+          li {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    &__main {
+      top: 60px;
+      left: 131px;
+      height: calc(100vh - 120px);
+      width: calc(100vw - (151px));
+    }
+  }
+}
+@media (max-width: 600px) {
+  .layout {
+    .header {
+      height: 40px;
+      left: 100px;
+      width: calc(100vw - 100px);
+      &__contents {
+        font-size: 12px;
+      }
+    }
+
+    .footer {
+      height: 30px;
+      left: 100px;
+
+      &__contents {
+        &--info {
+          width: 40%;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .side-menu {
+      width: 100px;
+      &__navigation-items {
+        ul {
+          li {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    &__main {
+      top: 40px;
+      left: 101px;
+      height: calc(100vh - 90px);
+      width: calc(100vw - (121px));
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .layout {
+    .header {
+      height: 30px;
+      left: 100px;
+      width: calc(100vw - 100px);
+      &__contents {
+        font-size: 12px;
+      }
+    }
+
+    .footer {
+      height: 20px;
+      left: 100px;
+
+      &__contents {
+        &--info {
+          font-size: 10px;
+        }
+      }
+    }
+
+    .side-menu {
+      width: 100px;
+      &__navigation-items {
+        ul {
+          li {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    &__main {
+      top: 30px;
+      left: 101px;
+      height: calc(100vh - 70px);
+      width: calc(100vw - (117px));
+      padding: 8px;
+    }
   }
 }

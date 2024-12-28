@@ -3,5 +3,6 @@ export const queryKeys = {
   starships: 'starships',
   people: 'people',
   planets: 'planets',
+  vehicles: 'vehicles',
   item: 'item',
 }

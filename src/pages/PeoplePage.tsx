@@ -7,7 +7,7 @@ import { queryKeys } from 'react-query/constants'
 import { PaginatedResponse, Result } from 'types'
 import Layout from 'components/Layout/Layout'
 import Card from 'components/Card/Card'
-import 'pages/PeoplePage.scss'
+import Spinner from 'components/ui/Spinner'
 
 const PeoplePage = () => {
   const { currentPage, setResultsInfo } = useAppContext()
@@ -15,7 +15,7 @@ const PeoplePage = () => {
     PaginatedResponse,
     Error
   >({
-    queryKey: [queryKeys.starships, currentPage],
+    queryKey: [queryKeys.people, currentPage],
     queryFn: () => fetchPeople(currentPage),
     keepPreviousData: true,
   })
@@ -32,12 +32,12 @@ const PeoplePage = () => {
     updateResultInfo()
   }, [data])
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return <Spinner />
   if (isError) return <div>Error: {error?.message}</div>
 
   return (
     <Layout>
-      <div className="people-container">
+      <div className="page-container">
         {data.results.map((person: Result) => (
           <Card
             key={person.name}

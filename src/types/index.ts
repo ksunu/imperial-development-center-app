@@ -70,3 +70,10 @@ export enum FilterTypesEnum {
   crew = 'crew',
   cargo_capacity = 'cargo_capacity',
 }
+
+export type FilterTypes = 'up' | 'down'
+
+export enum FilterTypesEnum {
+  up = 'up',
+  down = 'down',
+}

@@ -8,7 +8,13 @@ import {
   SetStateAction,
   useEffect,
 } from 'react'
-import { CategoryTypes, CategoryTypesEnum, ResultsInfo } from 'types'
+import {
+  CategoryTypes,
+  CategoryTypesEnum,
+  FilterTypes,
+  FilterTypesEnum,
+  ResultsInfo,
+} from 'types'
 
 interface AppContextProps {
   currentCategory: CategoryTypes
@@ -19,8 +25,8 @@ interface AppContextProps {
   setResultsInfo: Dispatch<SetStateAction<ResultsInfo | undefined>>
   filter?: string
   setFilter: Dispatch<SetStateAction<string | undefined>>
-  search?: string
-  setSearch: Dispatch<SetStateAction<string | undefined>>
+  filterOrder?: FilterTypes
+  setFilterOrder: Dispatch<SetStateAction<FilterTypes | undefined>>
 }
 
 const AppContext = createContext<AppContextProps | undefined>(undefined)
@@ -35,13 +41,16 @@ export const AppContextProvider: FC<{ children: ReactNode }> = ({
   const [resultsInfo, setResultsInfo] = useState<ResultsInfo | undefined>(
     undefined
   )
-  const [search, setSearch] = useState<string | undefined>(undefined)
   const [filter, setFilter] = useState<string | undefined>(undefined)
+  const [filterOrder, setFilterOrder] = useState<FilterTypes | undefined>(
+    undefined
+  )
 
   useEffect(() => {
     setCurrentPage(1)
     setResultsInfo(undefined)
-    setSearch(undefined)
+    setFilterOrder(undefined)
+    setFilter(undefined)
   }, [currentCategory])
 
   return (
@@ -53,10 +62,10 @@ export const AppContextProvider: FC<{ children: ReactNode }> = ({
         setCurrentPage,
         resultsInfo,
         setResultsInfo,
-        search,
-        setSearch,
         filter,
         setFilter,
+        filterOrder,
+        setFilterOrder,
       }}
     >
       {children}

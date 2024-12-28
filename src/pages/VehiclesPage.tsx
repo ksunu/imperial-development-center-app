@@ -7,7 +7,7 @@ import { queryKeys } from 'react-query/constants'
 import { PaginatedResponse, Result } from 'types'
 import Layout from 'components/Layout/Layout'
 import Card from 'components/Card/Card'
-import 'pages/VehiclesPage.scss'
+import Spinner from 'components/ui/Spinner'
 
 const VehiclesPage = () => {
   const { currentPage, setResultsInfo } = useAppContext()
@@ -15,7 +15,7 @@ const VehiclesPage = () => {
     PaginatedResponse,
     Error
   >({
-    queryKey: [queryKeys.starships, currentPage],
+    queryKey: [queryKeys.vehicles, currentPage],
     queryFn: () => fetchVehicles(currentPage),
     keepPreviousData: true,
   })
@@ -32,12 +32,12 @@ const VehiclesPage = () => {
     updateResultInfo()
   }, [data])
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return <Spinner />
   if (isError) return <div>Error: {error?.message}</div>
 
   return (
     <Layout>
-      <div className="vehicles-container">
+      <div className="page-container">
         {data.results.map((vehicle: Result) => (
           <Card
             key={vehicle.name}

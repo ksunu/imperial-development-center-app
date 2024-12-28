@@ -1,18 +1,30 @@
 {
+  "name": "imperial-development-center",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "author": "ksunu",
   "scripts": {
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage"
   },
   "devDependencies": {
-    "@testing-library/dom": "^10.4.0",
+    "@testing-library/dom": "10.4.0",
+    "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "^16.1.0",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
+    "@types/react": "19.0.2",
+    "@types/react-dom": "19.0.2",
     "@types/react-router-dom": "5.3.3",
+    "@vitest/ui": "2.1.8",
+    "msw": "^2.7.0",
     "typescript": "5.7.2",
-    "vite": "6.0.5"
+    "vite": "6.0.5",
+    "vitest": "2.1.8"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "6.7.2",
@@ -21,6 +33,7 @@
     "@fortawesome/react-fontawesome": "0.2.2",
     "@tanstack/react-query": "4",
     "@vitejs/plugin-react": "4.3.4",
+    "jsdom": "25.0.1",
     "path": "0.12.7",
     "react": "19.0.0",
     "react-dom": "19.0.0",

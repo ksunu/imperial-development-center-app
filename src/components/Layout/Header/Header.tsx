@@ -1,13 +1,18 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFilter, faCaretRight } from '@fortawesome/free-solid-svg-icons'
+import {
+  faFilter,
+  faArrowUpShortWide,
+  faArrowDownShortWide,
+} from '@fortawesome/free-solid-svg-icons'
 
 import { useAppContext } from 'context/AppContext'
 import { CategoryTypesEnum, FilterTypesEnum } from 'types'
 import 'components/Layout/Header/Header.scss'
 
 const Header = () => {
-  const { currentCategory, setFilter } = useAppContext()
+  const { currentCategory, setFilter, filter, filterOrder, setFilterOrder } =
+    useAppContext()
   const [selectedOption, setSelectedOption] = useState<string | undefined>(
     undefined
   )
@@ -29,6 +34,20 @@ const Header = () => {
     setSelectedOption(event.target.value)
   }
 
+  const filterIcon = useCallback(() => {
+    if (filter) {
+      if (filterOrder === FilterTypesEnum.up) return faArrowUpShortWide
+      return faArrowDownShortWide
+    }
+    return faFilter
+  }, [filter, filterOrder])
+
+  const handleFilterOrder = () => {
+    if (filterOrder === FilterTypesEnum.up)
+      return setFilterOrder(FilterTypesEnum.down)
+    return setFilterOrder(FilterTypesEnum.up)
+  }
+
   return (
     <header className="header">
       <div className="header__contents">
@@ -38,12 +57,12 @@ const Header = () => {
         <nav className="header__contents--navigation">
           <ul>
             <li>
-              <input placeholder="search..." />
-            </li>
-            <li>
               {currentCategory === CategoryTypesEnum.starships && (
                 <>
-                  <FontAwesomeIcon icon={faFilter} />
+                  <FontAwesomeIcon
+                    onClick={handleFilterOrder}
+                    icon={filterIcon()}
+                  />
                   <select
                     value={selectedOption}
                     onChange={handleSelectionChange}

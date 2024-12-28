@@ -5,12 +5,13 @@ const numberBeautifier = (qty?: string) => {
   if (total > 999999999) return `${(total / 1000000000).toFixed(0)}B`
   if (total > 999999) return `${(total / 1000000).toFixed(0)}M`
   if (total > 999) return `${(total / 1000).toFixed(0)}k`
-  if (total < 1000) return `${(total / 1000).toFixed(2)}`
+  if (total < 1000) return `${(total / 1000).toFixed(2)}k`
+  return '-'
 }
 
 export const cardDataBeautifier = (
   type: CategoryTypes,
-  data: ResultItemInfo['result']
+  data?: ResultItemInfo['result']
 ) => {
   if (data) {
     let popUpInfo

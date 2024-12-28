@@ -12,7 +12,12 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "paths": {
+      "*": ["*"]
+    },
+    "types": ["vitest/globals"]
   },
-  "include": ["src"]
+  "include": ["src/**/*", "./**/*.ts"],
+  "exclude": ["node_modules"]
 }

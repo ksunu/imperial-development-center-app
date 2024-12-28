@@ -1,13 +1,11 @@
 .card {
   overflow: hidden;
-  border: 1px solid darkgray;
+  border: 1px solid $border-dark;
   border-radius: 5px;
   &__image {
     text-align: center;
     height: 60%;
-    background-color: black;
-    background-image: url('/assets/default/no-image.jpeg');
-    background-repeat: no-repeat;
+    background-color: $base-color;
     img {
       object-fit: cover;
       height: 100%;
@@ -18,13 +16,61 @@
     height: 40%;
     padding: 10px;
     &--title {
-      font-weight: 900;
-      color: #c8417e;
+      color: $text-title;
     }
     &--description {
       display: flex;
       flex-direction: column;
       font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 768px), (max-height: 700px) {
+  .card {
+    &__image {
+      height: 50%;
+    }
+    &__content {
+      height: 50%;
+      &--title {
+        font-size: 0.9rem;
+      }
+      &--description {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px), (max-height: 600px) {
+  .card {
+    display: flex;
+    &__image {
+      height: 100%;
+      width: 40%;
+    }
+    &__content {
+      height: 100%;
+      width: 60%;
+    }
+  }
+}
+@media (max-width: 500px) {
+  .card {
+    &__image {
+      height: 100%;
+      width: 30%;
+    }
+    &__content {
+      padding: 4px;
+      width: 70%;
+      &--title {
+        font-size: 12px;
+      }
+      &--description {
+        font-size: 10px;
+      }
     }
   }
 }

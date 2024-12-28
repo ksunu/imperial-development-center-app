@@ -4,19 +4,13 @@ import { useQuery } from '@tanstack/react-query'
 import { useAppContext } from 'context/AppContext'
 import { fetchStarships, fetchUrl } from 'api/endpoints'
 import { queryKeys } from 'react-query/constants'
-import {
-  FilterTypesEnum,
-  PaginatedResponse,
-  Result,
-  ResultItemInfo,
-} from 'types'
+import { FilterTypesEnum, PaginatedResponse, ResultItemInfo } from 'types'
 import Layout from 'components/Layout/Layout'
 import Card from 'components/Card/Card'
-import 'pages/StarshipsPage.scss'
-import { cardDataBeautifier } from 'utils/cardDataBeautifier'
+import Spinner from 'components/ui/Spinner'
 
 const StarshipsPage = () => {
-  const { currentPage, setResultsInfo, filter } = useAppContext()
+  const { currentPage, setResultsInfo, filter, filterOrder } = useAppContext()
   const [currentResults, setCurrentResults] = useState<any[]>([])
   const { data, isLoading, isError, error } = useQuery<
     PaginatedResponse,
@@ -65,29 +59,43 @@ const StarshipsPage = () => {
     updateResultInfo()
   }, [data])
 
-  useEffect(() => {
+  const filterResults = useCallback(() => {
     if (filter && currentResults.length) {
-      if (filter === FilterTypesEnum.crew) {
-        const currentResultsCopy = [...currentResults]
-        const sorted = currentResultsCopy.sort((a: any, b: any) => {
-          const splitNumber = (crewNum: string) => {
-            const numReplace = crewNum.replace(',', '')
-            const numSplit = numReplace.split('-')
-            return Number(numSplit[0])
-          }
-          return splitNumber(a.properties.crew) - splitNumber(b.properties.crew)
-        })
-        setCurrentResults(sorted)
-      }
+      const currentResultsCopy = [...currentResults]
+      const propertyToFilter: string =
+        filter === FilterTypesEnum.crew
+          ? FilterTypesEnum.crew
+          : FilterTypesEnum.cargo_capacity
+      const sorted = currentResultsCopy.sort((a: any, b: any) => {
+        const splitNumber = (crewNum: string) => {
+          const numReplace = crewNum.replace(',', '')
+          const numSplit = numReplace.split('-')
+          return Number(numSplit[0])
+        }
+        if (filterOrder === FilterTypesEnum.down)
+          return (
+            splitNumber(a.properties[propertyToFilter]) -
+            splitNumber(b.properties[propertyToFilter])
+          )
+        return (
+          splitNumber(b.properties[propertyToFilter]) -
+          splitNumber(a.properties[propertyToFilter])
+        )
+      })
+      setCurrentResults(sorted)
     }
-  }, [filter, currentResults])
+  }, [filter, currentResults, filterOrder])
 
-  if (isLoading) return <div>Loading...</div>
+  useEffect(() => {
+    filterResults()
+  }, [filter, filterOrder])
+
+  if (isLoading) return <Spinner />
   if (isError) return <div>Error: {error?.message}</div>
 
   return (
     <Layout>
-      <div className="starships-container">
+      <div className="page-container">
         {currentResults.map((starship: ResultItemInfo['result']) => (
           <Card
             key={starship.uid}

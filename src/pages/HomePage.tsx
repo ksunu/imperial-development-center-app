@@ -7,7 +7,7 @@ import { queryKeys } from 'react-query/constants'
 import { PaginatedResponse, Result } from 'types'
 import Layout from 'components/Layout/Layout'
 import Card from 'components/Card/Card'
-import 'pages/HomePage.scss'
+import Spinner from 'components/ui/Spinner'
 
 interface HomePageProps {}
 
@@ -35,12 +35,12 @@ const HomePage: FC<HomePageProps> = () => {
     updateResultInfo()
   }, [data])
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return <Spinner />
   if (isError) return <div>Error: {error?.message}</div>
 
   return (
     <Layout>
-      <div className="home-container">
+      <div className="page-container">
         {data.results.map((planet: Result) => (
           <Card
             key={planet.name}

@@ -9,7 +9,7 @@ export const imageResolver = (type: CategoryTypes, name: string) => {
         planetJpg.includes(nameFormat) ? 'jpg' : 'png'
       }`
     case CategoryTypesEnum.people:
-      return ''
+      return 'assets/default/no-image.jpeg'
     case CategoryTypesEnum.starships:
       const nameFormatNoSpace = nameFormat.split(' ').join()
       const starShipJpg = ['rebeltransport']
@@ -17,7 +17,12 @@ export const imageResolver = (type: CategoryTypes, name: string) => {
         starShipJpg.includes(nameFormatNoSpace) ? 'jpg' : 'png'
       }`
     case CategoryTypesEnum.vehicles:
-      return ''
+      const peopleJpg = ['at-st', 'sandcrawler', 'x-34landspeeder']
+      const vehicleRemoveChar = nameFormat.replace('/', '')
+      const vehicleRemoveSpace = vehicleRemoveChar.split(' ').join()
+      return `assets/${CategoryTypesEnum.vehicles}/${vehicleRemoveSpace}.${
+        peopleJpg.includes(vehicleRemoveSpace) ? 'jpg' : 'png'
+      }`
     default:
       return 'assets/default/no-image.jpeg'
   }

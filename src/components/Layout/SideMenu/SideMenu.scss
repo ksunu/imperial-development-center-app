@@ -5,9 +5,9 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: black;
-  color: white;
-  border-right: 1px solid darkgray;
+  background-color: $base-color;
+  color: $base-white;
+  border-right: 1px solid $border-dark;
 
   &__logo {
     text-align: center;
@@ -28,7 +28,7 @@
         display: flex;
         align-items: center;
         &:hover {
-          color: lightblue;
+          color: $hover-blue;
         }
       }
     }
@@ -37,10 +37,10 @@
     }
 
     &--selected {
-      border-bottom: 2px solid red;
-      color: lightcoral;
+      border-bottom: 2px solid $border-red;
+      color: $text-light-red;
       &:hover {
-        border-bottom: 2px solid lightcoral;
+        border-bottom: 2px solid $text-light-red;
       }
     }
   }

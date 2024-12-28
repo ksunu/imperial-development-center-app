@@ -10,7 +10,7 @@ import 'components/Card/Card.scss'
 
 interface CardProps extends Result {
   type: CategoryTypes
-  newData: ResultItemInfo['result']
+  newData?: ResultItemInfo['result']
 }
 
 const Card: FC<CardProps> = ({ type, name, uid, url, newData }) => {
@@ -35,10 +35,18 @@ const Card: FC<CardProps> = ({ type, name, uid, url, newData }) => {
     }
   }, [data])
 
+  const handleImageError = (e: any) => {
+    e.target.src = 'assets/default/no-image.jpeg'
+  }
+
   return (
     <div className="card">
       <section className="card__image">
-        <img src={imageResolver(type, name)} alt={name} />
+        <img
+          src={imageResolver(type, name)}
+          onError={handleImageError}
+          alt={name}
+        />
       </section>
       <section className="card__content">
         <article className="card__content--title">{name}</article>
